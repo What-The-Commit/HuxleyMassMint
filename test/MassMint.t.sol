@@ -43,4 +43,26 @@ contract ContractTest is Test {
 
         assertEq(humansToken.balanceOf(0xC006562812F7Adf75FA0aDCE5f02C33E070e0ada), 6);
     }
+
+    function testTransferGenesisTokens() public {
+        vm.startPrank(0xC006562812F7Adf75FA0aDCE5f02C33E070e0ada);
+        genesisToken.safeTransferFrom(0xC006562812F7Adf75FA0aDCE5f02C33E070e0ada, address(massMinter), 10, 2, "");
+        genesisToken.safeTransferFrom(0xC006562812F7Adf75FA0aDCE5f02C33E070e0ada, address(massMinter), 8, 1, "");
+        genesisToken.safeTransferFrom(0xC006562812F7Adf75FA0aDCE5f02C33E070e0ada, address(massMinter), 9, 1, "");
+        genesisToken.safeTransferFrom(0xC006562812F7Adf75FA0aDCE5f02C33E070e0ada, address(massMinter), 5, 1, "");
+        genesisToken.safeTransferFrom(0xC006562812F7Adf75FA0aDCE5f02C33E070e0ada, address(massMinter), 6, 1, "");
+
+        massMinter.transferGenesisTokens(0xC006562812F7Adf75FA0aDCE5f02C33E070e0ada, 10, 2);
+        massMinter.transferGenesisTokens(0xC006562812F7Adf75FA0aDCE5f02C33E070e0ada, 8, 1);
+        massMinter.transferGenesisTokens(0xC006562812F7Adf75FA0aDCE5f02C33E070e0ada, 9, 1);
+        massMinter.transferGenesisTokens(0xC006562812F7Adf75FA0aDCE5f02C33E070e0ada, 5, 1);
+        massMinter.transferGenesisTokens(0xC006562812F7Adf75FA0aDCE5f02C33E070e0ada, 6, 1);
+
+        assertEq(genesisToken.balanceOf(0xC006562812F7Adf75FA0aDCE5f02C33E070e0ada, 10), 2);
+        assertEq(genesisToken.balanceOf(0xC006562812F7Adf75FA0aDCE5f02C33E070e0ada, 8), 1);
+        assertEq(genesisToken.balanceOf(0xC006562812F7Adf75FA0aDCE5f02C33E070e0ada, 9), 1);
+        assertEq(genesisToken.balanceOf(0xC006562812F7Adf75FA0aDCE5f02C33E070e0ada, 5), 1);
+        assertEq(genesisToken.balanceOf(0xC006562812F7Adf75FA0aDCE5f02C33E070e0ada, 6), 1);
+        vm.stopPrank();
+    }
 }

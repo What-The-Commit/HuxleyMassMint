@@ -40,4 +40,8 @@ contract MassMint is ERC1155Holder, ERC721Holder, Ownable {
     function transferHumans(address receiver, uint256 tokenId) external onlyOwner {
         humansToken.safeTransferFrom(address(this), receiver, tokenId, "");
     }
+
+    function transferGenesisTokens(address receiver, uint256 tokenId, uint256 amount) external onlyOwner {
+        genesisToken.safeTransferFrom(address(this), receiver, tokenId, amount, "");
+    }
 }
