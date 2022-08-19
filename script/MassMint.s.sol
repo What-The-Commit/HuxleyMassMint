@@ -4,9 +4,12 @@ pragma solidity ^0.8.13;
 import "../lib/forge-std/src/Script.sol";
 import "../src/MassMint.sol";
 import "../src/interfaces/IGenesisToken.sol";
+import {Solenv} from "../lib/solenv/src/Solenv.sol";
 
 contract MassMintScript is Script {
-    function setUp() public {}
+    function setUp() public {
+        Solenv.config();
+    }
 
     function run() public {
         vm.startBroadcast();
